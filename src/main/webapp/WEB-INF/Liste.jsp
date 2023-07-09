@@ -15,9 +15,8 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
 </head>
 <body>
     <h1>Liste des vols</h1>
+     <a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
     <form method="get" action="Controller_Insert_Vol">
-        <button type="submit">Ajouter un vol</button>
-    </form>
     <table>
         <tr>
             <td>id</td>
@@ -36,13 +35,11 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
                     <td><%= vols[i].getDestination() %></td>
                     <td><%= vols[i].getDate_vol() %></td>
                     <td><%= vols[i].getPrix() %></td>
-                </tr>
-                
-                <td>
+                	<td>
                         <button type="submit">Reserver</button>
-                </td>
-                <% } %>
-            </tr>
+                	</td>  
+            	</tr>
+            	<% } %>
     </table>
 </form>
 </body>

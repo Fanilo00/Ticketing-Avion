@@ -18,7 +18,7 @@
 
 <servlet-mapping>
     <servlet-name>Insert_Vol</servlet-name>
-    <url-pattern>/insert_vol</url-pattern>
+    <url-pattern>/Insert_Vol</url-pattern>
 </servlet-mapping>
 
 

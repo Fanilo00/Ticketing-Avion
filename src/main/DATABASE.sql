@@ -42,3 +42,6 @@ create table Promotion(
     foreign key(Id_Avion) references avion(Id_Avion)
 );
 
+
+
+
