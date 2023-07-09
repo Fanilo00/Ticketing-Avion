@@ -20,7 +20,7 @@ public class Controller_Vol extends HttpServlet {
 	        Vol vols= new Vol();
 	        Connect conn=new Connect();
 	        Connection c=conn.Connex();
-	        Vol[] listeVols = vols.get_ListeVols(c);
+	        Vol[] listeVols = vols.get_ListeVols_valide(c);
 	        request.setAttribute("listeVol", listeVols);
 	        request.getRequestDispatcher("/WEB-INF/Liste.jsp").forward(request, response);
 	    }

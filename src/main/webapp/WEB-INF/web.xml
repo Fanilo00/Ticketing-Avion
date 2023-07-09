@@ -2,24 +2,48 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
   <servlet>
     <description></description>
-      <servlet-name>Liste</servlet-name>
-      <servlet-class>serv.Controller_Vol</servlet-class>
-</servlet>
-  
-<servlet-mapping>
-        <servlet-name>Liste</servlet-name>
-        <url-pattern>/Liste_vol</url-pattern>
-</servlet-mapping>
-  
-<servlet>
+    <servlet-name>Liste</servlet-name>
+    <servlet-class>serv.Controller_Vol</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Liste</servlet-name>
+    <url-pattern>/Liste_vol</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>Insert_Vol</servlet-name>
     <servlet-class>serv.Controller_Insert_Vol</servlet-class>
-</servlet>
-
-<servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>Insert_Vol</servlet-name>
     <url-pattern>/Insert_Vol</url-pattern>
-</servlet-mapping>
-
-
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>Administration</servlet-name>
+    <servlet-class>serv.Controller_Vol_Admin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Administration</servlet-name>
+    <url-pattern>/Administration</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Admin</display-name>
+    <servlet-name>Controller_Admin</servlet-name>
+    <servlet-class>serv.Controller_Admin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Admin</servlet-name>
+    <url-pattern>/Controller_Admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Validation</display-name>
+    <servlet-name>Controller_Validation</servlet-name>
+    <servlet-class>serv.Controller_Validation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Validation</servlet-name>
+    <url-pattern>/Controller_Validation</url-pattern>
+  </servlet-mapping>
 </web-app>

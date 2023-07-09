@@ -82,7 +82,89 @@ public class Vol {
 			this.validations = validations;
 		}
 		
-		public  Vol[] get_ListeVols(Connection con) 
+		
+		
+		public  Vol[] get_ListeVols_valide(Connection con) 
+	    {
+	        Vector<Vol> vect = new Vector<Vol>();
+	        Vol[] voleListe=null;
+	        try {
+	        	if(con!=null)
+	        	{
+	        		Statement stmnt = con.createStatement();
+	       	      
+	     	        String sql = "SELECT * FROM Vol where Validations='true'";
+	     	        ResultSet result = stmnt.executeQuery(sql);
+
+	     	        while (result.next()) {
+	     	            int Id_Vol = result.getInt("Id_Vol");
+	     	            int num_vol=result.getInt("Numero_vol");
+	     	            int Id_Avion = result.getInt("Id_Avion");
+	     	            String Source = result.getString("Source");
+	     	            String Destination = result.getString("Destination");
+	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
+	     	            int Prix = result.getInt("Prix");
+	     	            boolean Validations = result.getBoolean("Validations");
+
+	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,Validations);
+	     	            vect.add(vol);
+	     	        }
+	     	        voleListe=new Vol[vect.size()];
+	     	        vect.copyInto(voleListe);
+	     	        result.close();
+	     	        stmnt.close();
+	        	}
+	     
+	       
+	        
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return voleListe;
+	    }
+		
+		
+		public  Vol[] get_ListeVols_invalide(Connection con) 
+	    {
+	        Vector<Vol> vect = new Vector<Vol>();
+	        Vol[] voleListe=null;
+	        try {
+	        	if(con!=null)
+	        	{
+	        		Statement stmnt = con.createStatement();
+	       	      
+	     	        String sql = "SELECT * FROM Vol where Validations='false'";
+	     	        ResultSet result = stmnt.executeQuery(sql);
+
+	     	        while (result.next()) {
+	     	            int Id_Vol = result.getInt("Id_Vol");
+	     	            int num_vol=result.getInt("Numero_vol");
+	     	            int Id_Avion = result.getInt("Id_Avion");
+	     	            String Source = result.getString("Source");
+	     	            String Destination = result.getString("Destination");
+	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
+	     	            int Prix = result.getInt("Prix");
+	     	            boolean Validations = result.getBoolean("Validations");
+
+	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,Validations);
+	     	            vect.add(vol);
+	     	        }
+	     	        voleListe=new Vol[vect.size()];
+	     	        vect.copyInto(voleListe);
+	     	        result.close();
+	     	        stmnt.close();
+	        	}
+	     
+	       
+	        
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return voleListe;
+	    }
+		
+		
+		public  Vol[] get_All_ListeVols(Connection con) 
 	    {
 	        Vector<Vol> vect = new Vector<Vol>();
 	        Vol[] voleListe=null;
@@ -120,6 +202,7 @@ public class Vol {
 	        }
 	        return voleListe;
 	    }
+		
 	    public void insert_vol(Connection con) {
 	        try {
 	            if (con!=null) {
