@@ -28,7 +28,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Controller_Admin</display-name>
     <servlet-name>Controller_Admin</servlet-name>
     <servlet-class>serv.Controller_Admin</servlet-class>
   </servlet>
@@ -38,12 +37,30 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Controller_Validation</display-name>
     <servlet-name>Controller_Validation</servlet-name>
     <servlet-class>serv.Controller_Validation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Controller_Validation</servlet-name>
     <url-pattern>/Controller_Validation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <servlet-name>Controller_Employer</servlet-name>
+    <servlet-class>serv.Controller_Plan_Vol</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Employer</servlet-name>
+    <url-pattern>/Controller_Plan_Vol</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Emp</display-name>
+    <servlet-name>Controller_Emp</servlet-name>
+    <servlet-class>serv.Controller_Emp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Emp</servlet-name>
+    <url-pattern>/Controller_Emp</url-pattern>
   </servlet-mapping>
 </web-app>

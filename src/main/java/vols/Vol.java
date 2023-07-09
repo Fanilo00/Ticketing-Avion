@@ -203,6 +203,23 @@ public class Vol {
 	        return voleListe;
 	    }
 		
+		
+		public void valider(Connection con,int id_vol)
+		{
+			try {
+	            if (con!=null) {
+	                String sql = "Update Vol set Validations='true' where id_vol="+ id_vol;
+	                PreparedStatement stmt = con.prepareStatement(sql);
+	                stmt.executeUpdate();
+	                
+	                stmt.close();
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+			
+		}
+		
 	    public void insert_vol(Connection con) {
 	        try {
 	            if (con!=null) {

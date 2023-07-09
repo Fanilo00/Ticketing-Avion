@@ -5,10 +5,9 @@
 </head>
 <body>
     <h1>Formulaire d'insertion de Vol</h1>
-    <form method="post" action="Validation.jsp">
+    <form method="post" action="<%= request.getContextPath()%>/Controller_Employer">
         <label for="id_avion">ID Avion:</label>
         <input type="number" name="id_avion" required><br>
-        
         <label for="source">Source:</label>
         <input type="text" name="source" required><br>
         

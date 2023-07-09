@@ -1,6 +1,7 @@
 package serv;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +9,12 @@ import vols.Vol;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONObject;
 
 import connex.Connect;
 
@@ -19,14 +26,44 @@ public class Controller_Admin extends HttpServlet {
 	private static final long serialVersionUID = -304271601828994101L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	        Vol vols= new Vol();
-	        Connect conn=new Connect();
-	        Connection c=conn.Connex();
-	        Vol[] listeVols = vols.get_ListeVols_invalide(c);
-	        request.setAttribute("listeVol", listeVols);
-	        request.getRequestDispatcher("/WEB-INF/Administration.jsp").forward(request, response);
-	    }
+		
+		Cookie[] cookies = request.getCookies();
+		
+		if (cookies != null) {
+		    for (Cookie cookie : cookies) {
+		        if (cookie.getName().equals("vol_cookie")) {
+		            String valeurCookie = cookie.getValue();
+		            JSONParser parser = new JSONParser(valeurCookie);
+		            try {
+		            	
+		                JSONObject volJson = (JSONObject) parser.parse();
+		                int id_vol = (int)volJson.get("id");
+		                String source =(String)volJson.get("valeur1");
+		                String destination = (String)volJson.get("valeur2");
+		                String date = (String) volJson.get("depart");
+		                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		                Date parsedDate = dateFormat.parse(date);
+		                Timestamp daty = new Timestamp(parsedDate.getTime());
+		                int prix = (int)volJson.get("prix");
+		                Boolean validation = (Boolean) volJson.get("validations");
+		             
+		               
+		                request.setAttribute("id_vol",id_vol);
+		                request.setAttribute("source", source);
+		                request.setAttribute("destination",destination);
+		                request.setAttribute("daty", daty);
+		                request.setAttribute("prix",prix);
+		                request.setAttribute("validation",validation);
+		                
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+		            
+		            request.getRequestDispatcher("/WEB-INF/Administration.jsp").forward(request, response);
+		        }
+		    }
+		}
+	}
 }
 
 
