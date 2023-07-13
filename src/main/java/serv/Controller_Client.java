@@ -9,10 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vols.Vol;
-/**
- * Servlet implementation class Controller_Vol
- */
-public class Controller_Vol extends HttpServlet {
+
+public class Controller_Client extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	 public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,6 +20,6 @@ public class Controller_Vol extends HttpServlet {
 	        Connection c=conn.Connex();
 	        Vol[] listeVols = vols.get_ListeVols_valide(c);
 	        request.setAttribute("listeVol", listeVols);
-	        request.getRequestDispatcher("/WEB-INF/Liste.jsp").forward(request, response);
+	        request.getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);
 	    }
 }

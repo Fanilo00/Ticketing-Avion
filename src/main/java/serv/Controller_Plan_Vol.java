@@ -19,7 +19,7 @@ public class Controller_Plan_Vol extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
         String idavion= request.getParameter("id_avion");
-        int id_avion=Integer.parseInt("idavion");
+        int id_avion=Integer.parseInt(idavion);
         String source=request.getParameter("source");
         String destination=request.getParameter("destination");
         String date=request.getParameter("date_vol");
@@ -29,7 +29,7 @@ public class Controller_Plan_Vol extends HttpServlet {
             parsedDate = dateFormat.parse(date);
             Timestamp daty = new Timestamp(parsedDate.getTime());
             String price= request.getParameter("prix");
-            int prix=Integer.parseInt("price");
+            int prix=Integer.parseInt(price);
            
     		JSONObject volJson = new JSONObject();
 			volJson.put("idavion",id_avion);

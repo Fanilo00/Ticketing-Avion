@@ -2,6 +2,14 @@
 
 -- postgres ilay base ho ampesaina
 
+create table users(
+Id_User serial not null primary key,
+Nom varchar(100),
+Email varchar(100),
+Password varchar(100),
+Role int
+);
+
 create table avion(
 Id_Avion serial primary key,
 Nb_place_CA int,

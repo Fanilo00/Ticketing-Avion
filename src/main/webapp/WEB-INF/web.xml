@@ -2,12 +2,12 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
   <servlet>
     <description></description>
-    <servlet-name>Liste</servlet-name>
-    <servlet-class>serv.Controller_Vol</servlet-class>
+    <servlet-name>Client</servlet-name>
+    <servlet-class>serv.Controller_Client</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Liste</servlet-name>
-    <url-pattern>/Liste_vol</url-pattern>
+    <servlet-name>Client</servlet-name>
+    <url-pattern>/Client</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Insert_Vol</servlet-name>
@@ -62,5 +62,45 @@
   <servlet-mapping>
     <servlet-name>Controller_Emp</servlet-name>
     <url-pattern>/Controller_Emp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Login</display-name>
+    <servlet-name>Controller_Login</servlet-name>
+    <servlet-class>serv.Controller_Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Login</servlet-name>
+    <url-pattern>/Controller_Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Index</display-name>
+    <servlet-name>Controller_Index</servlet-name>
+    <servlet-class>serv.Controller_Index</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Index</servlet-name>
+    <url-pattern>/Controller_Index</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Inscription</display-name>
+    <servlet-name>Controller_Inscription</servlet-name>
+    <servlet-class>serv.Controller_Inscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Inscription</servlet-name>
+    <url-pattern>/Controller_Inscription</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Show_Inscription</display-name>
+    <servlet-name>Controller_Show_Inscription</servlet-name>
+    <servlet-class>serv.Controller_Show_Inscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Show_Inscription</servlet-name>
+    <url-pattern>/Controller_Show_Inscription</url-pattern>
   </servlet-mapping>
 </web-app>
