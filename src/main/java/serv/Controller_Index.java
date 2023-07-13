@@ -12,8 +12,6 @@ public class Controller_Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	 public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	      
 	        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	    }
 
