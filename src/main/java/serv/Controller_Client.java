@@ -18,7 +18,7 @@ public class Controller_Client extends HttpServlet {
 	        Vol vols= new Vol();
 	        Connect conn=new Connect();
 	        Connection c=conn.Connex();
-	        Vol[] listeVols = vols.get_ListeVols_valide(c);
+	        Vol[] listeVols = vols.get_Vols_Valide(c);
 	        request.setAttribute("listeVol", listeVols);
 	        request.getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);
 	    }
