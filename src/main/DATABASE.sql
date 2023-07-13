@@ -31,7 +31,7 @@ create table Vol (
     Prix int,
     date_soumission TIMESTAMP,
 	est_valide BOOLEAN DEFAULT false,
-	date_validation TIMESTAMP,
+	date_validation TIMESTAMP default null,
     foreign key(Id_Avion) references Avion(Id_Avion)
 );
 
@@ -46,6 +46,8 @@ VALUES (13579, 3, 'Los Angeles', 'Lima', '2023-07-30 12:15:00', 1200, current_ti
 INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
 VALUES (98765, 1, 'Rome', 'Berlin', '2023-08-05 09:30:00', 800, current_timestamp);
 
+ select * from vol where est_valide='false' and 
+ date_soumission<=current_timestamp and current_timestamp<=date_soumission + interval '2 weeks';
 
 CREATE TABLE vol_attente_validation(
   id SERIAL PRIMARY KEY,
@@ -59,6 +61,8 @@ ALTER TABLE Vol ADD Validations BOOLEAN;
 INSERT INTO Vol VALUES (default, 1000, 1, 'Paris', 'New York', '2023-07-05 14:30:00', 1500, true);
 INSERT INTO Vol VALUES (default, 1001, 2, 'Barcelone', 'Rome', '2023-07-15 18:20:00', 1200, true);
 INSERT INTO Vol VALUES (default, 1002, 3, 'Londres', 'Dubai', '2023-07-10 09:45:00', 2000, false);
+
+
 
 create table Reservation(
     Id_Reservation serial primary key,

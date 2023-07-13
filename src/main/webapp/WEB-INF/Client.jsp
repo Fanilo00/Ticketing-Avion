@@ -16,7 +16,7 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
 <body>
     <h1>Liste des vols</h1>
      <a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
-    <form method="get" action="Controller_Insert_Vol">
+    <form method="get" action="Controller_Reservation">
     <table>
         <tr>
             <td>id</td>

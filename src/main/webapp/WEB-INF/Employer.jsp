@@ -2,7 +2,7 @@
 <%@ page import="vols.*"%>
 <%
 
-Vol[] vols=(Vol[])request.getAttribute("listeVol");
+Vol[] vols=(Vol[])request.getAttribute("allvol");
 
 %>
 
@@ -29,7 +29,7 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
         <tr>
                 <% for(int i=0;i<vols.length;i++){ %>
                 <tr>
-                    <td><%= vols[i].getId_Vol() %></td>
+                    <td><%= vols[i].getNumero_vol() %></td>
                     <td><%= vols[i].getId_avion() %></td>
                     <td><%= vols[i].getSource() %></td>
                     <td><%= vols[i].getDestination() %></td>

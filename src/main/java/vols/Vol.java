@@ -18,10 +18,13 @@ public class Vol {
 	    String destination;
 	    Timestamp Date_vol;
 	    int prix;
-	    boolean validations;
+	    Timestamp datesoumi;
+	    boolean validation;
+	    Timestamp datevalide;
 
 	   
-	    public Vol() {
+	 
+		public Vol() {
 	    }
 	    public Vol(int id_Vol, int numero_vol, int id_avion, String source, String destination, Timestamp Date_vol,int prix, boolean validations) {
 	        this.setId_Vol(id_Vol);
@@ -75,16 +78,42 @@ public class Vol {
 	    public void setPrix(int prix) {
 	        this.prix = prix;
 	    }
-	    public boolean isValidations() {
-			return validations;
+	    public boolean getValidation() {
+			return validation;
 		}
-		public void setValidations(boolean validations) {
-			this.validations = validations;
+		public void setValidation(boolean validations) {
+			this.validation = validations;
 		}
 		
+		   public Timestamp getDatesoumi() {
+				return datesoumi;
+			}
+			public void setDatesoumi(Timestamp datesoumi) {
+				this.datesoumi = datesoumi;
+			}
+			public Timestamp getDatevalide() {
+				return datevalide;
+			}
+			public void setDatevalide(Timestamp datevalide) {
+				this.datevalide = datevalide;
+			}
+			
+			
 		
-		
-		public  Vol[] get_ListeVols_valide(Connection con) 
+		public Vol(int id_Vol, int numero_vol, int id_avion, String source, String destination, Timestamp date_vol,
+					int prix, Timestamp datesoumi, boolean validation, Timestamp datevalide) {
+				this.setId_Vol(id_Vol);
+				this.setNumero_vol(numero_vol);
+				this.setId_avion(id_avion);
+				this.setSource(source);
+				this.setDestination(destination);
+				this.setDate_vol(date_vol);
+				this.setPrix(prix);
+				this.setDatesoumi(datesoumi);
+				this.setValidation(validation);
+				this.setDatevalide(datevalide);
+			}
+		public  Vol[] get_Vols_Valide(Connection con) 
 	    {
 	        Vector<Vol> vect = new Vector<Vol>();
 	        Vol[] voleListe=null;
@@ -93,7 +122,7 @@ public class Vol {
 	        	{
 	        		Statement stmnt = con.createStatement();
 	       	      
-	     	        String sql = "SELECT * FROM Vol where Validations='true'";
+	     	        String sql = "SELECT * FROM Vol where est_valide='true'";
 	     	        ResultSet result = stmnt.executeQuery(sql);
 
 	     	        while (result.next()) {
@@ -104,9 +133,11 @@ public class Vol {
 	     	            String Destination = result.getString("Destination");
 	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
 	     	            int Prix = result.getInt("Prix");
-	     	            boolean Validations = result.getBoolean("Validations");
+	     	            Timestamp date_soumission = result.getTimestamp("date_soumission");
+	     	            boolean Validations = result.getBoolean("est_valide");
+	     	            Timestamp date_valide = result.getTimestamp("date_validation");
 
-	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,Validations);
+	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,date_soumission,Validations,date_valide);
 	     	            vect.add(vol);
 	     	        }
 	     	        voleListe=new Vol[vect.size()];
@@ -124,7 +155,7 @@ public class Vol {
 	    }
 		
 		
-		public  Vol[] get_ListeVols_invalide(Connection con) 
+		public  Vol[] get_Vols_Encours(Connection con) 
 	    {
 	        Vector<Vol> vect = new Vector<Vol>();
 	        Vol[] voleListe=null;
@@ -133,7 +164,7 @@ public class Vol {
 	        	{
 	        		Statement stmnt = con.createStatement();
 	       	      
-	     	        String sql = "SELECT * FROM Vol where Validations='false'";
+	     	        String sql = "select * from vol where est_valide='false' and date_soumission<=current_timestamp and current_timestamp<=date_soumission + interval '2 weeks'";
 	     	        ResultSet result = stmnt.executeQuery(sql);
 
 	     	        while (result.next()) {
@@ -144,9 +175,10 @@ public class Vol {
 	     	            String Destination = result.getString("Destination");
 	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
 	     	            int Prix = result.getInt("Prix");
+	     	            Timestamp date_soumission = result.getTimestamp("date_soumission");
 	     	            boolean Validations = result.getBoolean("Validations");
-
-	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,Validations);
+	     	            Timestamp date_valide = result.getTimestamp("date_validation");
+	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,date_soumission,Validations,date_valide);
 	     	            vect.add(vol);
 	     	        }
 	     	        voleListe=new Vol[vect.size()];
@@ -184,9 +216,10 @@ public class Vol {
 	     	            String Destination = result.getString("Destination");
 	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
 	     	            int Prix = result.getInt("Prix");
-	     	            boolean Validations = result.getBoolean("Validations");
-
-	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,Validations);
+	     	            Timestamp date_soumission = result.getTimestamp("date_soumission");
+	     	            boolean Validations = result.getBoolean("est_valide");
+	     	            Timestamp date_valide = result.getTimestamp("date_validation");
+	     	            Vol vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,date_soumission,Validations,date_valide);
 	     	            vect.add(vol);
 	     	        }
 	     	        voleListe=new Vol[vect.size()];
