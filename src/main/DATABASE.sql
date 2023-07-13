@@ -9,6 +9,7 @@ Email varchar(100),
 Password varchar(100),
 Role int
 );
+INSERT INTO users VALUES ()
 
 create table avion(
 Id_Avion serial primary key,
