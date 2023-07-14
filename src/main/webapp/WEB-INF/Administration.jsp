@@ -7,9 +7,6 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
 
 %>
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
