@@ -250,7 +250,7 @@ public class Vol {
 		{
 			try {
 	            if (con!=null) {
-	                String sql = "Update Vol set Validations='true' where id_vol="+ id_vol;
+	                String sql = "Update Vol set est_valide='true' where id_vol="+ id_vol;
 	                PreparedStatement stmt = con.prepareStatement(sql);
 	                stmt.executeUpdate();
 	                
