@@ -19,7 +19,7 @@ public class Controller_Emp extends HttpServlet {
 	        Connect conn=new Connect();
 	        Connection c=conn.Connex();
 	        Vol[] all = vols.get_All_ListeVols(c);
-	        request.setAttribute("allvol", all); 
+	        request.setAttribute("allvol",all); 
 	            request.getRequestDispatcher("/WEB-INF/Employer.jsp").forward(request, response);
 	        }
 	    
