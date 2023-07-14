@@ -85,29 +85,29 @@ public class Vol {
 			this.validation = validations;
 		}
 		
-		   public Timestamp getDatesoumi() {
-				return datesoumi;
-			}
-			public void setDatesoumi(Timestamp datesoumi) {
-				this.datesoumi = datesoumi;
-			}
-			public Timestamp getDatevalide() {
-				return datevalide;
-			}
-			public void setDatevalide(Timestamp datevalide) {
-				this.datevalide = datevalide;
-			}
-			
-			public Vol(int numero_vol, int id_avion, String source, String destination, Timestamp date_vol,
-					int prix, Timestamp datesoumi) {
-				this.setNumero_vol(numero_vol);
-				this.setId_avion(id_avion);
-				this.setSource(source);
-				this.setDestination(destination);
-				this.setDate_vol(date_vol);
-				this.setPrix(prix);
-				this.setDatesoumi(datesoumi);
-			}
+	   public Timestamp getDatesoumi() {
+			return datesoumi;
+		}
+		public void setDatesoumi(Timestamp datesoumi) {
+			this.datesoumi = datesoumi;
+		}
+		public Timestamp getDatevalide() {
+			return datevalide;
+		}
+		public void setDatevalide(Timestamp datevalide) {
+			this.datevalide = datevalide;
+		}
+		
+		public Vol(int numero_vol, int id_avion, String source, String destination, Timestamp date_vol,
+				int prix, Timestamp datesoumi) {
+			this.setNumero_vol(numero_vol);
+			this.setId_avion(id_avion);
+			this.setSource(source);
+			this.setDestination(destination);
+			this.setDate_vol(date_vol);
+			this.setPrix(prix);
+			this.setDatesoumi(datesoumi);
+		}
 		
 		public Vol(int id_Vol, int numero_vol, int id_avion, String source, String destination, Timestamp date_vol,
 					int prix, Timestamp datesoumi, boolean validation, Timestamp datevalide) {
@@ -163,6 +163,46 @@ public class Vol {
 	        return voleListe;
 	    }
 		
+		
+		
+		
+		public static Vol get_Vol_byId(Connection con,int idvol) 
+	    {
+	        Vol vol=null;
+	        try {
+	        	if(con!=null)
+	        	{
+	        		Statement stmnt = con.createStatement();
+	       	      
+	     	        String sql = "SELECT * FROM Vol where est_valide='true' and id_vol=" + idvol;
+	     	        ResultSet result = stmnt.executeQuery(sql);
+	     	        while (result.next()) 
+	     	        {
+	     	            int Id_Vol = result.getInt("Id_Vol");
+	     	            int num_vol=result.getInt("Numero_vol");
+	     	            int Id_Avion = result.getInt("Id_Avion");
+	     	            String Source = result.getString("Source");
+	     	            String Destination = result.getString("Destination");
+	     	            Timestamp Date_vol = result.getTimestamp("Date_vol");
+	     	            int Prix = result.getInt("Prix");
+	     	            Timestamp date_soumission = result.getTimestamp("date_soumission");
+	     	            boolean Validations = result.getBoolean("est_valide");
+	     	            Timestamp date_valide = result.getTimestamp("date_validation");
+
+	     	            vol = new Vol(Id_Vol,num_vol,Id_Avion,Source,Destination,Date_vol,Prix,date_soumission,Validations,date_valide);
+	     	        }
+	     	        	
+	     	        result.close();
+	     	        stmnt.close();
+	        	}
+	     
+	       
+	        
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return vol;
+	    }
 		
 		public  Vol[] get_Vols_Encours(Connection con) 
 	    {

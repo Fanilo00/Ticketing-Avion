@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<% 
+	int idvol =(int)request.getAttribute("idvol");  
+int numvol =(int)request.getAttribute("numvol"); 
+String source =(String)request.getAttribute("source");  
+int idvol =(int)request.getAttribute("idvol");  
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +16,8 @@
 <body>
     <h1>Formulaire de réservation</h1>
     
-    <form action="ReservationServlet" method="post">
+    <form action="Controller_Reservation" method="post">
+        <input type="hidden" value="<%= idvol %>" name="id_vol">
         <label for="nom">Nom :</label>
         <input type="text" name="nom" id="nom" required><br><br>
         

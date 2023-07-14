@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import connex.Connect;
@@ -15,6 +16,7 @@ public class Controller_Login extends HttpServlet {
    
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	Connect conn=new Connect();
+	PrintWriter out = response.getWriter();
     Connection c=conn.Connex();
 	String email = request.getParameter("email");
 	String password = request.getParameter("pass");
@@ -23,17 +25,18 @@ public class Controller_Login extends HttpServlet {
 	if(email.compareTo(User.get_User_by_mailpass(c, email, password).getEmail())==0
 	&& password.compareTo(User.get_User_by_mailpass(c, email, password).getPassword())==0)
 	{
-		if(User.get_User_by_mailpass(c, email, password).getRole()==0)
+		out.print(User.get_User_by_mailpass(c, email, password).getRole());
+		if(User.get_User_by_mailpass(c, email, password).getRole()==1)
 		{
 			request.getRequestDispatcher("/WEB-INF/Admin.jsp").forward(request, response);
 		}
-		else if(User.get_User_by_mailpass(c, email, password).getRole()==1)
+		else if(User.get_User_by_mailpass(c, email, password).getRole()==2)
 		{
 			request.getRequestDispatcher("/WEB-INF/Employer.jsp").forward(request, response);
 		}
-		else if(User.get_User_by_mailpass(c, email, password).getRole()==2)
+		else if(User.get_User_by_mailpass(c, email, password).getRole()==3)
 		{
-			request.getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);
+			response.sendRedirect("Controller_Client");		
 		}
 		
 	}else {

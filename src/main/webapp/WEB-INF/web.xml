@@ -7,7 +7,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Client</servlet-name>
-    <url-pattern>/Client</url-pattern>
+    <url-pattern>/Controller_Client</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Insert_Vol</servlet-name>
@@ -112,5 +112,15 @@
   <servlet-mapping>
     <servlet-name>Controller_Reservation</servlet-name>
     <url-pattern>/Controller_Reservation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Controller_Form_Reservation</display-name>
+    <servlet-name>Controller_Form_Reservation</servlet-name>
+    <servlet-class>serv.Controller_Form_Reservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller_Form_Reservation</servlet-name>
+    <url-pattern>/Controller_Form_Reservation</url-pattern>
   </servlet-mapping>
 </web-app>

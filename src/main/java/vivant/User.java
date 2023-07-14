@@ -71,7 +71,7 @@ public class User {
 	        	{
 	        		Statement stmnt = con.createStatement();
 	       	      
-	     	        String sql = "SELECT * FROM Users where Email=" + email + "and Password=" + pass;
+	     	        String sql = "SELECT * FROM Users where Email='" + email + "' and Password='" + pass +"'";
 	     	        ResultSet result = stmnt.executeQuery(sql);
 
 	     	        while (result.next()) {

@@ -59,7 +59,6 @@ public class Reservation {
                 statement.setInt(2, this.classe.getId_Classe());
                 statement.setInt(3, this.placeReserver);
                 statement.setString(4, this.nom_passager);	
-
                 statement.executeUpdate();
 
                 System.out.println("Réservé!");
