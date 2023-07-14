@@ -16,7 +16,7 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
 </head>
 <body>
     <h1>Liste des vols en cours de validation</h1>
-    <form method="get" action="<%= request.getContextPath() %>/Controller_Validation">
+   
     <table>
         <tr>
             <td>id</td>
@@ -28,19 +28,23 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
         </tr>
         <tr>
                 <% for(int i=0;i<vols.length;i++){ %>
+                <form method="get" action="<%= request.getContextPath() %>/Controller_Validation">
+            	<input type="hidden" value="<%= vols[i].getId_Vol() %>" name="idvol">
                  <tr>
-			        <td name="idvol" id="idvol"><%= vols[i].getId_Vol() %></td>
-			        <td name="idavion" id="idavion"><%= vols[i].getId_avion() %></td>
-			        <td name="source" id="source"><%= vols[i].getSource() %></td>
-			        <td name="destination" id="destination"><%= vols[i].getDestination() %></td>
-			        <td name="date_vol" id="date_vol"><%= vols[i].getDate_vol() %></td>
-			        <td name="prix" id="prix"><%= vols[i].getPrix() %></td>
+			        <td id="idvol"><%= vols[i].getId_Vol() %></td>
+			        <td id="idavion"><%= vols[i].getId_avion() %></td>
+			        <td id="source"><%= vols[i].getSource() %></td>
+			        <td id="destination"><%= vols[i].getDestination() %></td>
+			        <td id="date_vol"><%= vols[i].getDate_vol() %></td>
+			        <td id="prix"><%= vols[i].getPrix() %></td>
 			        <td>
+			        
             		<button type="submit">Valider</button>
         			</td>  
     			</tr>
+    			</form>
             	<% } %>
     </table>
-</form>
+
 </body>
 </html>

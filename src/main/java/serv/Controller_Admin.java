@@ -26,8 +26,7 @@ public class Controller_Admin extends HttpServlet {
 	        Connect conn=new Connect();
 	        Connection c=conn.Connex();
 	        Vol[] encours = vols.get_Vols_Encours(c);
-	        request.setAttribute("Encours",encours); 
-		            
+	        request.setAttribute("Encours",encours);         
 		            request.getRequestDispatcher("/WEB-INF/Administration.jsp").forward(request, response);
 		        }
 	}
