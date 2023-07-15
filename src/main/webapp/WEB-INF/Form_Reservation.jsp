@@ -4,7 +4,7 @@
 	int idvol =(int)request.getAttribute("idvol");  
 int numvol =(int)request.getAttribute("numvol"); 
 String source =(String)request.getAttribute("source");  
-int idvo =(int)request.getAttribute("idvol");  
+int idvol =(int)request.getAttribute("idvol");  
 
 %>
 <!DOCTYPE html>
