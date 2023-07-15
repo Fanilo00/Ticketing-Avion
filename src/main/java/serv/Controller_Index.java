@@ -13,6 +13,7 @@ public class Controller_Index extends HttpServlet {
     
 	 public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+	        
 	    }
 
 }

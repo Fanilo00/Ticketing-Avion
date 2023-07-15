@@ -13,7 +13,7 @@ public class Main {
 		Connection c=con.Connex();
 		
 		Vol v= new Vol();
-		Vol[] vo=v.get_Vols_Encours(c);
+		Vol[] vo=v.get_All_ListeVols(c);
 		for(int i=0;i<vo.length;i++)
 		{
 			System.out.println(vo[i].getId_Vol());

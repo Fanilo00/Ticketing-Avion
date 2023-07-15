@@ -22,30 +22,36 @@ INSERT INTO Avion VALUES (default,30, 80);
 
 
 
-create table Vol (
-    Id_Vol serial primary key,
+CREATE TABLE Vol (
+    Id_Vol serial PRIMARY KEY,
     Numero_Vol int,
     Id_Avion int,
     Source VARCHAR(50),
     Destination VARCHAR(50),
     Date_Vol Timestamp,
+   	Duree_vol decimal(6,2),
     Prix int,
     date_soumission TIMESTAMP,
-	est_valide BOOLEAN DEFAULT false,
-	date_validation TIMESTAMP default null,
-    foreign key(Id_Avion) references Avion(Id_Avion)
+    est_valide BOOLEAN DEFAULT false,
+    date_validation TIMESTAMP DEFAULT null,
+    type_trajet int,
+    FOREIGN KEY (Id_Avion) REFERENCES Avion(Id_Avion)
 );
 
-INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
-VALUES (12345, 1, 'Paris', 'New York', '2023-07-15 10:00:00', 1000, current_timestamp);
-INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
-VALUES (67890, 2, 'Londres', 'Dubai', '2023-07-20 15:30:00', 1500, current_timestamp);
-INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
-VALUES (24680, 2, 'Tokyo', 'Sydney', '2023-07-25 08:45:00', 2000, current_timestamp);
-INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
-VALUES (13579, 3, 'Los Angeles', 'Lima', '2023-07-30 12:15:00', 1200, current_timestamp);
-INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
-VALUES (98765, 1, 'Rome', 'Berlin', '2023-08-05 09:30:00', 800, current_timestamp);
+    INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Duree_vol, Prix, date_soumission, est_valide, type_trajet)
+VALUES (1, 1, 'Paris', 'New York', '2023-07-15 10:00:00', 4.5, 1000, '2023-07-14 15:30:00', true, 0);
+
+    INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Duree_vol, Prix, date_soumission, est_valide, type_trajet)
+VALUES (2, 2, 'London', 'Paris', '2023-07-16 14:30:00', 2.75, 750, '2023-07-15 09:45:00', false, 1);
+
+    INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Duree_vol, Prix, date_soumission, est_valide, type_trajet)
+VALUES (3, 1, 'Madrid', 'Barcelona', '2023-07-17 09:00:00', 1.5, 500, '2023-07-16 16:20:00', true, 0);
+
+   INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Duree_vol, Prix, date_soumission, est_valide, type_trajet)
+VALUES (4, 3, 'Berlin', 'Rome', '2023-07-18 12:45:00', 3.25, 900, '2023-07-17 10:10:00', false, 1);
+
+  INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Duree_vol, Prix, date_soumission, est_valide, type_trajet)
+VALUES (5, 2, 'Tokyo', 'Sydney', '2023-07-19 18:30:00', 9.75, 2000, '2023-07-18 13:55:00', true, 0);
 
  select * from vol where est_valide='false' and 
  date_soumission<=current_timestamp and current_timestamp<=date_soumission + interval '2 weeks';

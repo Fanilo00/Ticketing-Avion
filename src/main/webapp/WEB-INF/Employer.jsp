@@ -1,46 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="vols.*"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
 
 Vol[] vols=(Vol[])request.getAttribute("allvol");
 
 %>
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
-    <h1>Liste des vols</h1>
-     <a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
-    <form method="get" action="Controller_Insert_Vol">
+
+<a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
     <table>
         <tr>
             <td>id</td>
+            <td>Numero du vol</td>
             <td>Avion</td>
             <td>Source</td>
             <td>Destination</td>
             <td>Date de départ</td>
+            <td>Durée du vol</td>
             <td>Prix</td>
         </tr>
         <tr>
-                <% for(int i=0;i<vols.length;i++){ %>
+            <% for(int i=0;i<vols.length;i++){ %>
+            <form method="post" action="Controller_Form_Reservation">
+            
+                
                 <tr>
+                    <td><%= vols[i].getId_Vol() %></td>
                     <td><%= vols[i].getNumero_vol() %></td>
                     <td><%= vols[i].getId_avion() %></td>
                     <td><%= vols[i].getSource() %></td>
                     <td><%= vols[i].getDestination() %></td>
-                    <td><%= vols[i].getDate_vol() %></td>
+                    
+  
+                    <%
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+                        Date dateVol = vols[i].getDate_vol();
+                        String dateStr = dateFormat.format(dateVol);
+                        String timeStr = timeFormat.format(dateVol);
+                    %>
+                    
+                    <td><%= dateStr %></td>
+                    <td><%= timeStr %></td>
+                    
+                    <%
+                        double dureeVol = vols[i].getDuree_vol();
+                        long heures = (long) dureeVol;
+                        long minutes = Math.round((dureeVol - heures) * 60);
+
+                        String dureeStr = String.format("%02dH%02d", heures, minutes);
+                    %>
+                    
+                    <td><%= dureeStr %></td>
+                    
                     <td><%= vols[i].getPrix() %></td>
-                	<td>
-                        <button type="submit">Reserver</button>
-                	</td>  
-            	</tr>
-            	<% } %>
+                    
+                </tr>
+            </form>
+            <% } %>
     </table>
-</form>
-</body>
-</html>
+    
+    </body>
+    </html>
