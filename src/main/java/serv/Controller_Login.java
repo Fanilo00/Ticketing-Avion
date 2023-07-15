@@ -25,7 +25,7 @@ public class Controller_Login extends HttpServlet {
 	if(email.compareTo(User.get_User_by_mailpass(c, email, password).getEmail())==0
 	&& password.compareTo(User.get_User_by_mailpass(c, email, password).getPassword())==0)
 	{
-		out.print(User.get_User_by_mailpass(c, email, password).getRole());
+		out.print(User.get_User_by_mailpass(c, email, password).getEmail());
 		if(User.get_User_by_mailpass(c, email, password).getRole()==1)
 		{
 			request.getRequestDispatcher("/WEB-INF/Admin.jsp").forward(request, response);
@@ -36,12 +36,13 @@ public class Controller_Login extends HttpServlet {
 		}
 		else if(User.get_User_by_mailpass(c, email, password).getRole()==3)
 		{
-			response.sendRedirect("Controller_Client");		
+			out.print(User.get_User_by_mailpass(c, email, password).getEmail());
+			request.getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);	
 		}
 		
-	}else {
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+	
 		
 		
 	}
