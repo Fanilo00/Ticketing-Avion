@@ -9,7 +9,10 @@ Email varchar(100),
 Password varchar(100),
 Role int
 );
-INSERT INTO users VALUES ()
+
+insert into users values(default,'admin','admin@gmail.com','123',1);
+insert into users values(default,'emp','emp@gmail.com','123',2);
+insert into users values(default,'hery','hery@gmail.com','123',3);
 
 create table avion(
 Id_Avion serial primary key,

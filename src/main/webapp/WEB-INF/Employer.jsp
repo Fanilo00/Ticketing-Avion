@@ -18,10 +18,9 @@ Vol[] vols=(Vol[])request.getAttribute("allvol");
 </head>
 <body>
 
-<a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
     <h1>Liste des vols</h1>
      <a href="<%= request.getContextPath() %>/Insert_Vol"><button type="submit">Ajouter un vol</button></a>
-    <form method="get" action="Controller_Insert_Vol">
+
     <table>
         <tr>
             <td>id</td>
@@ -35,10 +34,8 @@ Vol[] vols=(Vol[])request.getAttribute("allvol");
         </tr>
         <tr>
             <% for(int i=0;i<vols.length;i++){ %>
-            <form method="post" action="Controller_Form_Reservation">
+          
             
-                
-                <% for(int i=0;i<vols.length;i++){ %>
                 <tr>
                     <td><%= vols[i].getId_Vol() %></td>
                     <td><%= vols[i].getNumero_vol() %></td>
@@ -69,21 +66,16 @@ Vol[] vols=(Vol[])request.getAttribute("allvol");
                     
                     <td><%= dureeStr %></td>
                     
-                    <td><%= vols[i].getDate_vol() %></td>
                     <td><%= vols[i].getPrix() %></td>
                     
                 </tr>
-            </form>
+        	
             <% } %>
-                	<td>
-                        <button type="submit">Reserver</button>
-                	</td>  
-            	</tr>
-            	<% } %>
+               
+            	
+            
     </table>
     
     </body>
     </html>
-</form>
-</body>
-</html>
+

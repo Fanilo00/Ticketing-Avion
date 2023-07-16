@@ -1,7 +1,12 @@
 package vols;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Vector;
 
 public class Vol {
 	
@@ -12,6 +17,7 @@ public class Vol {
     String source;
     String destination;
     Timestamp Date_vol;
+    double duree_vol;
     int prix;
     Timestamp datesoumi;
     boolean validation;
@@ -102,10 +108,10 @@ public class Vol {
 		}
 		
 		public Timestamp getDate_vol() {
-			return date_vol;
+			return Date_vol;
 		}
 		public void setDate_vol(Timestamp date_vol) {
-			this.date_vol = date_vol;
+			this.Date_vol = date_vol;
 		}
 		public Vol(int numero_vol, int id_avion, String source, String destination,Timestamp date_vol,double duree,
 				int prix, Timestamp datesoumi,int type_trajet) {

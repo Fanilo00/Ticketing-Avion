@@ -28,21 +28,21 @@ public class Controller_Login extends HttpServlet {
 		out.print(User.get_User_by_mailpass(c, email, password).getEmail());
 		if(User.get_User_by_mailpass(c, email, password).getRole()==1)
 		{
-			request.getRequestDispatcher("/WEB-INF/Admin.jsp").forward(request, response);
+			response.sendRedirect("Controller_Admin");
 		}
 		else if(User.get_User_by_mailpass(c, email, password).getRole()==2)
 		{
-			request.getRequestDispatcher("/WEB-INF/Employer.jsp").forward(request, response);
+			response.sendRedirect("Controller_Emp");
 		}
 		else if(User.get_User_by_mailpass(c, email, password).getRole()==3)
 		{
-			out.print(User.get_User_by_mailpass(c, email, password).getEmail());
-			request.getRequestDispatcher("/WEB-INF/Client.jsp").forward(request, response);	
+			
+			response.sendRedirect("Controller_Client");
 		}
 		
+	}else{
+		response.sendRedirect("Controller_Index");
 	}
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-	
 		
 		
 	}

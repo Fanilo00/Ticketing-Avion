@@ -1,4 +1,3 @@
-@ -1,7 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="vols.*"%><%@ page import="java.util.Date" %>
@@ -7,11 +6,10 @@
 <%
 
 Vol[] vols=(Vol[])request.getAttribute("Encours");
-@ -14,58 +13,28 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
+%>
 </head>
 <body>
-    <h1>Liste des vols en cours de validation</h1>
-   
+    <h1>Liste des vols en cours de validation</h1>  
     <table>
         <tr>
             <td>id</td>
@@ -22,15 +20,11 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
             <td>Date de départ</td>
             <td>Durée du vol</td>
             <td>Prix</td>
+            
         </tr>
         <tr>
             <% for(int i=0;i<vols.length;i++){ %>
-            <form method="post" action="Controller_Form_Reservation">
-                <input type="hidden" value="<%= vols[i].getId_Vol() %>" name="idvol">
-                <input type="hidden" value="<%= vols[i].getNumero_vol() %>" name="numvol">
-                <input type="hidden" value="<%= vols[i].getSource() %>" name="source">
-                <input type="hidden" value="<%= vols[i].getDestination() %>" name="destination">
-                <input type="hidden" value="<%= vols[i].getDate_vol() %>" name="daty">
+          
                 
                 <tr>
                     <td><%= vols[i].getId_Vol() %></td>
@@ -64,17 +58,21 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
                     
                     <td><%= vols[i].getPrix() %></td>
                     <td>
-                <% for(int i=0;i<vols.length;i++){ %>
-                <form method="get" action="<%= request.getContextPath() %>/Controller_Validation">
-            	<input type="hidden" value="<%= vols[i].getId_Vol() %>" name="idvol">
-                 <tr>
-			        <td id="idvol"><%= vols[i].getId_Vol() %></td>
-			        <td id="idavion"><%= vols[i].getId_avion() %></td>
-			        <td id="source"><%= vols[i].getSource() %></td>
-			        <td id="destination"><%= vols[i].getDestination() %></td>
-			        <td id="date_vol"><%= vols[i].getDate_vol() %></td>
-			        <td id="prix"><%=  vols[i].getPrix() %></td>
-			        <td>
-			        
+                    <td>
+			        <form method="get" action="<%= request.getContextPath() %>/Controller_Validation">
+            			<input type="hidden" value="<%= vols[i].getId_Vol() %>" name="idvol">
             		<button type="submit">Valider</button>
-        			</td>  
+            		</form>
+        			</td> 
+                
+                 
+			         
+        		</tr>
+        <% } %>
+        		
+      </table>
+
+	</body>
+	</html>
+      
+      
