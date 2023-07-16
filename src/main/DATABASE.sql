@@ -50,8 +50,7 @@ VALUES (13579, 3, 'Los Angeles', 'Lima', '2023-07-30 12:15:00', 1200, current_ti
 INSERT INTO Vol (Numero_Vol, Id_Avion, Source, Destination, Date_Vol, Prix, date_soumission)
 VALUES (98765, 1, 'Rome', 'Berlin', '2023-08-05 09:30:00', 800, current_timestamp);
 
- select * from vol where est_valide='false' and 
- date_soumission<=current_timestamp and current_timestamp<=date_soumission + interval '2 weeks';
+
 
 CREATE TABLE vol_attente_validation(
   id SERIAL PRIMARY KEY,
@@ -71,16 +70,19 @@ INSERT INTO Vol VALUES (default, 1002, 3, 'Londres', 'Dubai', '2023-07-10 09:45:
 create table Reservation(
     Id_Reservation serial primary key,
     Id_Vol int,
+    Nbplace_affaire int,
+    Nbplace_eco int,
     Nom_passager varchar(100) not null,
     Date_Reservation Timestamp default current_timestamp,
     foreign key(Id_Vol) references Vol(Id_Vol)
 );
 
+
 create table Promotion(
     Id_Promotion serial primary key,
     Id_Avion int,
-    Date_Debut Timestamp,
     Date_Fin Timestamp,
+    classe int,
     foreign key(Id_Avion) references avion(Id_Avion)
 );
 

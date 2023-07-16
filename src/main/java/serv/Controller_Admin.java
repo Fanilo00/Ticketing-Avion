@@ -7,8 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import vols.Vol;
 import java.io.IOException;
 import java.sql.Connection;
-
-
+import avion.Avion;
 import connex.Connect;
 
 
@@ -26,6 +25,12 @@ public class Controller_Admin extends HttpServlet {
 	        Connect conn=new Connect();
 	        Connection c=conn.Connex();
 	        Vol[] encours = vols.get_Vols_Encours(c);
+	        Avion[] avs=new Avion[encours.length];
+        	for(int i=0;i<encours.length;i++)
+        	{
+        		avs[i]=Avion.get_Avion_by_Id(c,encours[i].getId_avion());
+        	}
+        request.setAttribute("avions", avs);
 	        request.setAttribute("Encours",encours);         
 		            request.getRequestDispatcher("/WEB-INF/Administration.jsp").forward(request, response);
 		        }

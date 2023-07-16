@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="vols.Vol" %>
+<%@ page import="avion.Avion"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 
 <%
 
-Vol[] vols=(Vol[])request.getAttribute("listeVol");
+Vol[] vols=(Vol[])request.getAttribute("listevol");
+Avion[] avions=(Avion[])request.getAttribute("avions");
 %>
 
 <!DOCTYPE html>
@@ -15,8 +17,6 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
 </head>
 <body>
     <h1>Liste des vols</h1>
-    <a href="<%= request.getContextPath() %>/Insert_Vol"><button type="button">Ajouter un vol</button></a>
-    
     <table>
         <tr>
             <th>id</th>
@@ -25,9 +25,11 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
             <th>Source</th>
             <th>Destination</th>
             <th>Date de départ</th>
+            <th>Heure de départ</th>
             <th>Durée du vol</th>
             <th>Prix</th>
-            <th>Action</th>
+            <th>Place Affaire dispo </th>
+            <th>Place Eco dispo </th>
         </tr>
         
         <% for(int i=0; i < vols.length; i++) {
@@ -53,11 +55,14 @@ Vol[] vols=(Vol[])request.getAttribute("listeVol");
             <td><%= timeStr %></td>
             <td><%= dureeStr %></td>
             <td><%= vols[i].getPrix() %></td>
+            <td><%= avions[i].getNb_placeaff()  %></td>
+			<td><%= avions[i].getNb_placeeco() %></td>
             <td>
                 <form method="post" action="Controller_Form_Reservation">
                     <input type="hidden" value="<%= vols[i].getId_Vol() %>" name="idvol">
-                    <input type="hidden" value="<%= vols[i].getNumero_vol() %>" name="numvol">
-                    <input type="hidden" value="<%= vols[i].getSource() %>" name="source">
+                    <input type="hidden" value="<%= vols[i].getPrix() %>" name="prix">
+                    <input type="hidden" value="<%= avions[i].getNb_placeaff()  %>" name="nbplace_aff">
+                    <input type="hidden" value="<%= avions[i].getNb_placeeco() %>" name="nbplace_eco">
                     <button type="submit">Réserver</button>
                 </form>
             </td>

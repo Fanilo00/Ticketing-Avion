@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
@@ -114,7 +115,7 @@ public class Vol {
 			this.Date_vol = date_vol;
 		}
 		public Vol(int numero_vol, int id_avion, String source, String destination,Timestamp date_vol,double duree,
-				int prix, Timestamp datesoumi,int type_trajet) {
+				int prix,int type_trajet) {
 			this.setNumero_vol(numero_vol);
 			this.setId_avion(id_avion);
 			this.setSource(source);
@@ -122,7 +123,6 @@ public class Vol {
 			this.setDate_vol(date_vol);
 			this.setDuree_vol(duree);
 			this.setPrix(prix);
-			this.setDatesoumi(datesoumi);
 			this.setType_trajet(type_trajet);
 		}
 		
@@ -332,7 +332,7 @@ public class Vol {
 	    public void insert_vol(Connection con) {
 	        try {
 	            if (con!=null) {
-	                String sql = "INSERT INTO Vol VALUES (default, ?, ?, ?, ?, ?, ?, ?,?,default,?)";
+	                String sql = "INSERT INTO Vol VALUES (default, ?, ?, ?, ?, ?, ?, ?,Current_Timestamp,false,null, ?)";
 	                PreparedStatement stmt = con.prepareStatement(sql);
 	                
 	                stmt.setInt(1, this.getNumero_vol());
@@ -342,8 +342,7 @@ public class Vol {
 	                stmt.setTimestamp(5, this.getDate_vol());
 	                stmt.setDouble(6, this.getDuree_vol());
 	                stmt.setInt(7,this.getPrix());
-	                stmt.setTimestamp(8,this.getDatesoumi());
-	                stmt.setInt(9,this.getType_trajet());
+	                stmt.setInt(8,this.getType_trajet());
 	                stmt.executeUpdate();
 	                stmt.close();
 	                System.out.println(sql);
@@ -356,18 +355,19 @@ public class Vol {
 	        
 	    }
 
-	    public static String addHeuresToDate(String dateDepartStr, String[] heuresToAddStr) 
-	    {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-            LocalDateTime dateDepart = LocalDateTime.parse(dateDepartStr, formatter);
+	    
+	    public static String addHeuresToDate(String dateDepartStr, String[] heuresToAddStr) {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	        LocalDateTime dateDepart = LocalDateTime.parse(dateDepartStr, formatter);
 
-            for (String heureToAddStr : heuresToAddStr) {
-                LocalDateTime heureToAdd = LocalDateTime.parse(heureToAddStr, DateTimeFormatter.ofPattern("HH:mm"));
-                dateDepart = dateDepart.plusHours(heureToAdd.getHour()).plusMinutes(heureToAdd.getMinute());
-            }
+	        for (String heureToAddStr : heuresToAddStr) {
+	            LocalTime heureToAdd = LocalTime.parse(heureToAddStr);
+	            dateDepart = dateDepart.plusHours(heureToAdd.getHour()).plusMinutes(heureToAdd.getMinute());
+	        }
 
-            return dateDepart.format(formatter);
-        }
+	        return dateDepart.format(formatter);
+	    }
+
 	    
 	    
 	    public static double getHeureEnDecimal(String heure) {

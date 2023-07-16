@@ -7,41 +7,27 @@ import java.sql.Timestamp;
 
 public class Promotion {
 	int id_Promotion;
-	int idvol;
-    String classe;
-    int par_Nbplace;
-    Timestamp datedebut;
+	int idavion;
+    int classe;
     Timestamp datefin;
+    
 	public int getId_Promotion() {
 		return id_Promotion;
 	}
-	public void setId_Promotion(int id_Promotion)
-	{
+	public void setId_Promotion(int id_Promotion) {
 		this.id_Promotion = id_Promotion;
 	}
-	public int getIdvol() {
-		return idvol;
+	public int getIdavion() {
+		return idavion;
 	}
-	public void setIdvol(int idvol) {
-		this.idvol = idvol;
+	public void setIdavion(int idavion) {
+		this.idavion = idavion;
 	}
-	public String getClasse() {
+	public int getClasse() {
 		return classe;
 	}
-	public void setClasse(String classe) {
+	public void setClasse(int classe) {
 		this.classe = classe;
-	}
-	public int getPar_Nbplace() {
-		return par_Nbplace;
-	}
-	public void setPar_Nbplace(int par_Nbplace) {
-		this.par_Nbplace = par_Nbplace;
-	}
-	public Timestamp getDatedebut() {
-		return datedebut;
-	}
-	public void setDatedebut(Timestamp datedebut) {
-		this.datedebut = datedebut;
 	}
 	public Timestamp getDatefin() {
 		return datefin;
@@ -49,14 +35,14 @@ public class Promotion {
 	public void setDatefin(Timestamp datefin) {
 		this.datefin = datefin;
 	}
-	public Promotion(int id_Promotion, int idvol, String classe,int par_Nbplace,Timestamp datedebut,
+	
+	
+	public Promotion(int id_Promotion, int idavion, int classe,
 			Timestamp datefin)
 	{
 		this.setId_Promotion(id_Promotion);
-		this.setIdvol(idvol);
+		this.setIdavion(idavion);
 		this.setClasse(classe);
-		this.setPar_Nbplace(par_Nbplace);
-		this.setDatedebut(datedebut);
 		this.setDatefin(datefin);
 	}
 	public Promotion() {
@@ -77,12 +63,10 @@ public class Promotion {
      	        while (result.next()) 
      	        {
      	            int id_prom = result.getInt("id_promotion");
-     	            int idvol=result.getInt("id_vol");
-     	            String classe = result.getString("classe");
-     	            int nbplace = result.getInt("nb_place");
-     	            Timestamp datedebut = result.getTimestamp("datedebut");
+     	            int idvol=result.getInt("id_avion");
+     	            int classe = result.getInt("classe");
      	            Timestamp datefin = result.getTimestamp("datefin");
-     	            prom = new Promotion(id_prom,idvol,classe,nbplace,datedebut,datefin);
+     	            prom = new Promotion(id_prom,idvol,classe,datefin);
      	        }
      	        result.close();
      	        stmnt.close();
@@ -93,6 +77,9 @@ public class Promotion {
         }
         return prom;
 	}
+	
+	
+	
 
    
     

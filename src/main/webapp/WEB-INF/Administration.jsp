@@ -1,25 +1,32 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="vols.*"%><%@ page import="java.util.Date" %>
+<%@ page import="vols.*"%>
+<%@ page import="avion.*"%>
+<%@ page import="java.util.Date" %>
+
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="vols.*"%>
 <%
 
 Vol[] vols=(Vol[])request.getAttribute("Encours");
+Avion[] avions=(Avion[])request.getAttribute("avions");
 %>
 </head>
 <body>
     <h1>Liste des vols en cours de validation</h1>  
     <table>
         <tr>
-            <td>id</td>
-            <td>Numero du vol</td>
-            <td>Avion</td>
-            <td>Source</td>
-            <td>Destination</td>
-            <td>Date de départ</td>
-            <td>Durée du vol</td>
-            <td>Prix</td>
+            <th>id</th>
+            <th>Numero du vol</th>
+            <th>Avion</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date de départ</th>
+            <th>Heure de départ</th>
+            <th>Durée du vol</th>
+            <th>Prix</th>
+            <th>Place Affaire dispo </th>
+            <th>Place Eco dispo </th>
             
         </tr>
         <tr>
@@ -57,6 +64,8 @@ Vol[] vols=(Vol[])request.getAttribute("Encours");
                     <td><%= dureeStr %></td>
                     
                     <td><%= vols[i].getPrix() %></td>
+                    <td><%= avions[i].getNb_placeaff()  %></td>
+                    <td><%= avions[i].getNb_placeeco() %></td>
                     <td>
                     <td>
 			        <form method="get" action="<%= request.getContextPath() %>/Controller_Validation">
